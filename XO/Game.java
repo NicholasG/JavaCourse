@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 
 public class Game {
 
+    public static final int TO_WIN = 3;
+
     private static final int SIZE = 3;
 
     private static final char DEFAULT = '*';
@@ -91,10 +93,10 @@ public class Game {
                 }
             }
 
-            if (kx == 3) {
+            if (kx == TO_WIN) {
                 winner = "1st player win!";
                 return true;
-            } else if (ko == 3) {
+            } else if (ko == TO_WIN) {
                 winner = "2 player win!";
                 return true;
             }
@@ -116,10 +118,10 @@ public class Game {
                 }
             }
 
-            if (kx == 3) {
+            if (kx == TO_WIN) {
                 winner = "1st player win!";
                 return true;
-            } else if (ko == 3) {
+            } else if (ko == TO_WIN) {
                 winner = "2 player win!";
                 return true;
             }
@@ -141,10 +143,10 @@ public class Game {
                 }
             }
 
-            if (kx == 3) {
+            if (kx == TO_WIN) {
                 winner = "1st player win!";
                 return true;
-            } else if (ko == 3) {
+            } else if (ko == TO_WIN) {
                 winner = "2 player win!";
                 return true;
             }
@@ -166,10 +168,10 @@ public class Game {
                 }
             }
 
-            if (kx == 3) {
+            if (kx == TO_WIN) {
                 winner = "1st player win!";
                 return true;
-            } else if (ko == 3) {
+            } else if (ko == TO_WIN) {
                 winner = "2 player win!";
                 return true;
             }
