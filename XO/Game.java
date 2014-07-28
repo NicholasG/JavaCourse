@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class Game {
 
-    public static final int TO_WIN = 3;
+    private static final int TO_WIN = 3;
 
     private static final int SIZE = 3;
 
