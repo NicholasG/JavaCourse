@@ -1,5 +1,3 @@
-package XO;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,48 +30,83 @@ public class Game {
         }
     }
 
-    public void playGame() throws IOException {
+    public void playWithHuman() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         int i = 0;
         while (true) {
-
-            System.out.println("Write position (x; y) X: ");
-            int y = Integer.parseInt(reader.readLine());
-            int x = Integer.parseInt(reader.readLine());
-            XO[x - 1][y - 1] = 'X';
+            insertX(reader);
             i++;
-
-            for (int j = 0; j < SIZE; j++) {
-
-                for (int k = 0; k < SIZE; k++) {
-                    System.out.print("\t" + XO[j][k]);
-                }
-
-                System.out.println();
-            }
+            showProgress();
 
             if (i >= SIZE * SIZE) break;
             if (whoWin()) break;
 
-            System.out.println("Write position (x; y) O: ");
-            y = Integer.parseInt(reader.readLine());
-            x = Integer.parseInt(reader.readLine());
-            XO[x - 1][y - 1] = 'O';
-
-            for (int j = 0; j < SIZE; j++) {
-
-                for (int k = 0; k < SIZE; k++) {
-                    System.out.print("\t" + XO[j][k]);
-                }
-
-                System.out.println();
-            }
+            insertO(reader);
+            i++;
+            showProgress();
 
             if (whoWin()) break;
-
-            i++;
         }
+    }
+
+    public void playWithComputer() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        int i = 0;
+        while (true) {
+            insertX(reader);
+            i++;
+
+            if (i >= SIZE * SIZE) {
+                showProgress();
+                break;
+            }
+            if (whoWin()) {
+                showProgress();
+                break;
+            }
+
+            insertO();
+            i++;
+            showProgress();
+
+            if (whoWin()) break;
+        }
+    }
+
+    private void showProgress() {
+        for (int j = 0; j < SIZE; j++) {
+            for (int k = 0; k < SIZE; k++) {
+                System.out.print("\t" + XO[j][k]);
+            }
+            System.out.println();
+        }
+    }
+
+    private void insertO(BufferedReader reader) throws IOException {
+        System.out.println("Write position (x; y) O: ");
+        int y = Integer.parseInt(reader.readLine());
+        int x = Integer.parseInt(reader.readLine());
+        XO[x - 1][y - 1] = 'O';
+    }
+
+    private void insertO() throws IOException {
+        int y, x;
+        while (true) {
+            x = (int) Math.round(Math.random());
+            y = (int) Math.round(Math.random());
+
+            if (x < SIZE && y < SIZE && XO[x][y] == '*') break;
+        }
+        XO[x][y] = 'O';
+    }
+
+    private void insertX(BufferedReader reader) throws IOException {
+        System.out.println("Write position (x; y) X: ");
+        int y = Integer.parseInt(reader.readLine());
+        int x = Integer.parseInt(reader.readLine());
+        XO[x - 1][y - 1] = 'X';
     }
 
     private boolean whoWin() {
