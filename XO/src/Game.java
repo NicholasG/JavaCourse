@@ -94,10 +94,10 @@ public class Game {
     private void insertO() throws IOException {
         int y, x;
         while (true) {
-            x = (int) Math.round(Math.random());
-            y = (int) Math.round(Math.random());
+            x = (int) (Math.random() * SIZE);
+            y = (int) (Math.random() * SIZE);
 
-            if (x < SIZE && y < SIZE && XO[x][y] == '*') break;
+            if (XO[x][y] == '*') break;
         }
         XO[x][y] = 'O';
     }
